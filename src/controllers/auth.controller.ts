@@ -1,6 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import userService from "../services/user.service";
-import User from "../entities/user.entity";
 import authService from "../services/auth.service";
 
 class AuthController {
@@ -41,15 +39,8 @@ class AuthController {
   }
 
   async logout(req: Request, res: Response, next: NextFunction) {
-    // try {
-      // const { refresh_token } = req.cookies;
-      res.clearCookie('refresh_token')
-      // const token = await authService.logout(refresh_token);
-      // res.clearCookie("refresh_token");
-      return res.json("logout")
-    // } catch (error) {
-    //   next(error)
-    // }
+    res.clearCookie("refresh_token");
+    return res.json("logout");
   }
 }
 export default new AuthController();

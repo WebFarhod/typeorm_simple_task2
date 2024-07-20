@@ -1,4 +1,4 @@
-import { AppDataSource } from "../config";
+import { AppDataSource } from "../utils/config";
 import UserJwtDto from "../dtos/user.dto";
 import User from "../entities/user.entity";
 import BaseError from "../errors/base.error";
@@ -30,6 +30,9 @@ class AuthService {
     const userDto = new UserJwtDto(user);
     const token = Jwt.sign(userDto.data());
     return { userDto, ...token };
+  }
+  async findById(id: User["id"]): Promise<User | null> {
+    return await this.userRepository.findOneBy({ id });
   }
 }
 export default new AuthService();

@@ -8,8 +8,8 @@ import ErrorMiddleware from "./middlewares/error.middleware";
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/api/product,", productRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/product", productRoute);
 //middleware
 app.use(ErrorMiddleware);
 

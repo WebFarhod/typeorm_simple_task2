@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import User from "./entities/user.entity";
-import Product from "./entities/product.entity";
+import User from "../entities/user.entity";
+import Product from "../entities/product.entity";
 import "dotenv/config";
 const port = process.env.DB_PORT as number | undefined;
 export const AppDataSource = new DataSource({

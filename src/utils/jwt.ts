@@ -15,22 +15,28 @@ class Jwt {
   }
 
   sign(payload: IJwtUser) {
-    console.log("====================================");
-    console.log(payload);
-    console.log("====================================");
-    try {
-      const accessToken = jwt.sign(payload, this.accessKey, {
-        expiresIn: "1h",
-      });
-      const refreshToken = jwt.sign(payload, this.refreshKey, {
-        expiresIn: "7d",
-      });
+    const accessToken = jwt.sign(payload, this.accessKey, {
+      expiresIn: "1h",
+    });
+    const refreshToken = jwt.sign(payload, this.refreshKey, {
+      expiresIn: "7d",
+    });
 
-      return { accessToken, refreshToken };
+    return { accessToken, refreshToken };
+  }
+  validateRefreshToken(token: string) {
+    try {
+      return jwt.verify(token, this.refreshKey);
     } catch (error) {
-      console.log('====================================');
-      console.log(error);
-      console.log('====================================');
+      return null;
+    }
+  }
+
+  validateAccessToken(token: string): IJwtUser | null {
+    try {
+      return jwt.verify(token, this.accessKey) as IJwtUser;
+    } catch (error) {
+      return null;
     }
   }
 }

@@ -29,7 +29,10 @@ class User extends BaseEntity {
     this.password = await bcrypt.hash(this.password, salt);
   }
 
-  static async comparePasswords(candidatePassword: string, hashedPassword: string) {
+  static async comparePasswords(
+    candidatePassword: string,
+    hashedPassword: string
+  ) {
     return await bcrypt.compare(candidatePassword, hashedPassword);
   }
 }

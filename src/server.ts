@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import app from "./app";
-import { AppDataSource } from "./config";
+import { AppDataSource } from "./utils/config";
 import User from "./entities/user.entity";
 import RoleUser from "./enum/role.enum";
 
